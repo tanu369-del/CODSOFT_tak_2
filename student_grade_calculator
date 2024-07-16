@@ -1,0 +1,73 @@
+
+import java.util.Scanner;
+
+public class student_marks_calculator {
+    public static void main(String[] args) {
+        Scanner scr = new Scanner(System.in);
+
+        // Number of subjects
+        int numSubjects;
+        System.out.print("Enter the number of subjects: ");
+        numSubjects = scr.nextInt();
+
+        // Array to store marks for each subject
+        int[] marks = new int[numSubjects];
+
+        // Input marks for each subject
+        for (int i = 0; i < numSubjects; i++) {
+            System.out.print("Enter marks for subject " + (i + 1) + " (out of 100): ");
+            marks[i] = scr.nextInt();
+        }
+
+        // Calculate total marks
+        int totalMarks = calculateTotalMarks(marks);
+
+        // Calculate average percentage
+        double averagePercentage = calculateAveragePercentage(totalMarks, numSubjects);
+
+        // Calculate grade
+        char grade = calculateGrade(averagePercentage);
+
+        // Display results
+        displayResults(totalMarks, averagePercentage, grade);
+
+        scr.close();
+    }
+
+    // Method to calculate total marks
+    public static int calculateTotalMarks(int[] marks) {
+        int total = 0;
+        for (int mark : marks) {
+            total += mark;
+        }
+        return total;
+    }
+
+    // Method to calculate average percentage
+    public static double calculateAveragePercentage(int totalMarks, int numSubjects) {
+        return (double) totalMarks / numSubjects;
+    }
+
+    // Method to calculate grade based on average percentage
+    public static char calculateGrade(double averagePercentage) {
+        if (averagePercentage >= 90) {
+            return 'A';
+        } else if (averagePercentage >= 70) {
+            return 'B';
+        } else if (averagePercentage >= 50) {
+            return 'C';
+        } else if (averagePercentage >= 45) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }
+
+    // Method to display the results
+    public static void displayResults(int totalMarks, double averagePercentage, char grade) {
+        System.out.println("\nResults:");
+        System.out.println("Total Marks: " + totalMarks);
+        System.out.println("Average Percentage: " + averagePercentage + "%");
+        System.out.println("Grade: " + grade);
+    }
+}
